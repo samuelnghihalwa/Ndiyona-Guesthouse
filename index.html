@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ndiyona Guest House</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at left center, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 40%, transparent 70%),
+                linear-gradient(135deg, #2b1400, #ceac3de8);
+    color: #f7f5f2ea;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ceb161e1;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #c49f51;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0, 0, 0, 0.884)), url('View.jpg') center/cover no-repeat;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.hero p {
+    margin: 1rem 0;
+}
+
+.btn {
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #a07e4f, #a37a40);
+    color: #000000;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+/* GALLERY */
+.gallery-section {
+    padding: 5rem 2rem;
+}
+
+.gallery-section h3 {
+    margin-top: 2rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.room {
+    background: rgba(0,0,0,0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.room:hover {
+    transform: translateY(-8px);
+}
+
+.room img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.room-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.price {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #a08052;
+}
+
+/* FIXED IMAGE SIZES */
+.bathroom img { height: 300px;}
+.reception img { height: 350px; width: 100%;}
+.garden img { height: 300px; }
+.event img { height: 350px; }
+.yard img { height: 300px; }
+
+/* BOOKING */
+.booking-section {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    gap: 1rem;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    padding: 12px;
+    background: linear-gradient(45deg, #a17a4c, #e6e1e1);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* CONTACT */
+.contact-section {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+/* OFFLINE GUIDE */
+.offline-guide {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.753);
+    border-top: 2px solid #bd8e4d;
+}
+
+/* FOOTER */
+footer {
+    padding: 2rem;
+    text-align: center;
+    background: #111;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: #111;
+        width: 200px;
+        height: 100%;
+        transition: 0.3s;
+    }
+
+    nav ul.active {
+        right: 0;
+    }
+}
+
+/* ================= LUXURY AUTO IMAGE STRIP ================= */
+.auto-slider {
+    overflow: hidden;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    padding: 2rem 0;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-top: 2px solid rgba(165, 119, 59, 0.4);
+    border-bottom: 2px solid rgba(151, 58, 58, 0.4);
+}
+
+.slider-track {
+    display: flex;
+    width: max-content;
+    animation: scrollLeft 25s linear infinite;
+}
+
+.slider-track:hover {
+    animation-play-state: paused;
+}
+
+.slider-track img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 10px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.slider-track img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Ndiyona Guest House</div>
+    <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div>
+        <h1>Welcome to Ndiyona Guest House</h1>
+        <p>Luxury, comfort and tranquility</p>
+        <a href="#booking" class="btn">Book Now</a>
+    </div>
+</section>
+
+<!-- GALLERY (UNCHANGED - FULL RESTORED) -->
+<section id="gallery" class="gallery-section">
+
+<h2>Our Facilities</h2>
+
+<h3>Rooms</h3>
+<div class="gallery">
+
+    <div class="room">
+        <img src="room1.jpg">
+        <div class="room-info"><h4>Luxury Room1</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+    <div class="room">
+        <img src="room2.jpg">
+        <div class="room-info"><h4>Luxury Room2</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+    <div class="room">
+        <img src="room3.jpg">
+        <div class="room-info"><h4>Luxury Room3</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+    <div class="room">
+        <img src="room4.jpg">
+        <div class="room-info"><h4>Luxury Room4</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+    <div class="room">
+        <img src="room5.jpg">
+        <div class="room-info"><h4>Luxury Room5</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+    <div class="room">
+        <img src="room6.jpg">
+        <div class="room-info"><h4>Luxury Room6</h4><p class="price">N$200 per person sharing / N$300 single</p></div>
+    </div>
+
+</div>
+
+<h3>Bathrooms</h3>
+<div class="gallery bathroom">
+    <div class="room"><img src="neat bathroom1.jpg"><h4></h4></div>
+    <div class="room"><img src="neat bathroom2.jpg"><h4></h4></div>
+    <div class="room"><img src="neat bathroom3.jpg"><h4></h4></div>
+</div>
+
+<div class="offline-guide">
+    <h2>Offline Guide / Guest Info</h2>
+    <p>Reception is always available for check-in, assistance and bookings.</p>
+</div>
+
+<h3>Reception</h3>
+<div class="gallery reception">
+    <div class="room"><img src="reception.jpg"><h4></h4></div>
+</div>
+
+<h3></h3>
+<div class="gallery garden">
+    <div class="room"><img src="garden1.jpg"><h4></h4></div>
+    <div class="room"><img src="garden2.jpg"><h4></h4></div>
+    <div class="room"><img src="garden3.jpg"><h4></h4></div>
+</div>
+
+<h3>Event Space</h3>
+<div class="gallery event">
+    <div class="room"><img src="Event space1.jpg"><h4></h4></div>
+    <div class="room"><img src="Event space garden view.jpg"><h4></h4></div>
+    <div class="room"><img src="Event space garden view1.jpg"><h4></h4></div>
+</div>
+
+<h3></h3>
+<div class="gallery yard">
+    <div class="room"><img src="Yard  view1.jpg"></h4></div>
+    <div class="room"><img src="Yard view2.jpg"></h4></div>
+    <div class="room"><img src="Yard view3.jpg"></h4></div>
+</div>
+
+<!-- LUXURY AUTO IMAGE SLIDER -->
+<div class="auto-slider">
+    <div class="slider-track">
+
+        <img src="room1.jpg">
+        <img src="room2.jpg">
+        <img src="room3.jpg">
+        <img src="room4.jpg">
+        <img src="room5.jpg">
+        <img src="room6.jpg">
+        <img src="reception.jpg">
+        <img src="garden1.jpg">
+        <img src="Event space1.jpg">
+        <img src="Yard view2.jpg">
+
+        <!-- duplicate for infinite smooth loop -->
+        <img src="room1.jpg">
+        <img src="room2.jpg">
+        <img src="room3.jpg">
+
+    </div>
+</div>
+
+
+</section>
+
+<section id="booking" class="booking-section">
+<h2>Book Now</h2>
+
+<form onsubmit="sendToWhatsApp(); return false;">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="tel" id="phone" placeholder="Phone" required>
+<input type="date" id="checkin" required>
+<input type="date" id="checkout" required>
+
+<select id="room" required>
+<option>Select Room</option>
+<option>Luxury Room</option>
+<option>Standard Room</option>
+<option>Suite</option>
+</select>
+
+<button type="submit">Book via WhatsApp</button>
+</form>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+<h2>Contact</h2>
+<p>+264 81 691 3035</p>
+<p>+264 81 691 3033</p>
+</section>
+
+<footer>
+<p>© 2026 Ndiyona Guest House</p>
+</footer>
+
+<script>
+function sendToWhatsApp() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var checkin = document.getElementById("checkin").value;
+    var checkout = document.getElementById("checkout").value;
+    var room = document.getElementById("room").value;
+
+    var message = "Hello Ndiyona Guest House,%0A%0AI would like to make a booking:%0A"
+        + "Name: " + name + "%0A"
+        + "Email: " + email + "%0A"
+        + "Phone: " + phone + "%0A"
+        + "Check-in: " + checkin + "%0A"
+        + "Check-out: " + checkout + "%0A"
+        + "Room: " + room;
+
+    var url = "https://wa.me/264816913035?text=" + message;
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
+
+
